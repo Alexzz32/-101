@@ -312,8 +312,8 @@
 
         // --- Сцена, камера, рендерер ---
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x87ceeb);
-        scene.fog = new THREE.Fog(0x87ceeb, 30, 80);
+        scene.background = new THREE.Color(0x1a1a1a); // Темный фон
+        scene.fog = new THREE.Fog(0x1a1a1a, 15, 50); // Плотный темный туман
         
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.set(0, 2, 5);
@@ -351,11 +351,11 @@
             }
         });
 
-        // --- Освещение ---
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+        // --- Освещение (Тусклое, нуарное) ---
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.25); // Очень тусклый общий свет
         scene.add(ambientLight);
         
-        const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.5); // Слабый направленный свет
         dirLight.position.set(10, 20, 5);
         dirLight.castShadow = true;
         dirLight.receiveShadow = true;
@@ -371,15 +371,15 @@
         dirLight.shadow.bias = -0.001;
         scene.add(dirLight);
         
-        const fillLight = new THREE.PointLight(0xffffff, 0.8);
+        const fillLight = new THREE.PointLight(0xffffff, 0.3); // Очень слабый заполняющий свет
         fillLight.position.set(-5, 5, 10);
         scene.add(fillLight);
         
-        const fillLight2 = new THREE.PointLight(0xffeecc, 0.6);
+        const fillLight2 = new THREE.PointLight(0xffeecc, 0.2); // Очень слабый теплый свет
         fillLight2.position.set(5, 8, -5);
         scene.add(fillLight2);
         
-        const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6);
+        const hemisphereLight = new THREE.HemisphereLight(0x555555, 0x222222, 0.3); // Тусклый небесный свет
         scene.add(hemisphereLight);
 
         // --- Игровые переменные ---
